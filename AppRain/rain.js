@@ -1,37 +1,31 @@
 /*********************************************************
  * 
- * Application "Rain" ('25.09.20)
+ * Application "Rain"
  * 
  *********************************************************/
 
-const WINDOW_BG = "#f0f0f0"
+const CANVAS_BG = "#f0f0f0"
 
-function initial() {
+function execRain() {
 
     /**
-     * Full size display area
+     * Full size window
      */
     const _html = document.querySelector("#_html");
-    _html.style.width = "100%";
-    _html.style.height = "100%";
     _html.style.margin = 0;
     _html.style.padding = 0;
     const _body = document.querySelector("#_body");
-    _body.style.width = "100%"
-    _body.style.height = "100%"
     _body.style.margin = 0;
     _body.style.padding = 0;
-    const _canvas = document.querySelector("#_canvas");
-    _canvas.style.display = "block";
-    _canvas.style.width = "100%";
-    _canvas.style.height = "100%";
 
     /**
-     * Cavas initialize
+     * Canvas initialization
      */
-    _canvas.width = _canvas.clientWidth;   // draw area
-    _canvas.height = _canvas.clientHeight; //   <- display area
-    _canvas.style.backgroundColor = WINDOW_BG;
+    const _canvas = document.querySelector("#_canvas");
+    _canvas.style.display = "block";
+    _canvas.width = window.innerWidth;          // Canvas size
+    _canvas.height = window.innerHeight;        //   <- Window size
+    _canvas.style.backgroundColor = CANVAS_BG;
 
     /**
      * Rain start
@@ -69,7 +63,7 @@ class Rain {
             const _x = Math.floor(Math.random() * this.canvas_w);
             const _y = Math.floor(Math.random() * this.canvas_h);
             const _step = Math.floor(Math.random() * RIPPLE_STEP);
-            const _ripple = new Ripple(this.canvas, _x, _y, _step)
+            const _ripple = new _Ripple(this.context, _x, _y, _step)
             this.ripples.push(_ripple)
         }
         this.context.clearRect(0, 0, this.canvas_w, this.canvas_h);
@@ -82,10 +76,10 @@ class Rain {
     }
 }
 
-class Ripple {
+class _Ripple {
 
-    constructor(canvas, x, y, step) {
-        this.context = canvas.getContext('2d');
+    constructor(context, x, y, step) {
+        this.context = context;
         this.center_x = x;
         this.center_y = y;
         this.radius = 0;

@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-<html id="_html">
+<html id="_html" lang="en">
 <head>
+    <meta
+            name="viewport"
+            content="
+                width=device-width, height=device-height,
+                initial-scale=1
+            "
+    />
+    <title>Rain</title>
     <script src="rain.js"></script>
-    <title>Ripple</title>
 </head>
-<body id="_body" onload="initial();">
+<body id="_body">
     <canvas id="_canvas"></canvas>
+    <script>
+        window.addEventListener("load", (event) => {
+            execRain();
+        });
+    </script>
 </body>
 </html>
